@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  myflix-client:
+    build:
+      context: ../myflix-client
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000  # Use service name
+    ports:
+      - "3000:3000"
+
+  myflix-userauth:
+    build:
+      context: ../myflix-userauth
+    environment:
+      - MONGO_URI=mongodb://myflix-mongo-userauth:27017/userauth  # Use service name
+    depends_on:
+      - myflix-mongo-userauth  # Ensure MongoDB is started first
+    ports:
+      - 5000:5000
+
+  myflix-mongo-userauth:
+    image: mongo
+    ports:
+      - "7000:27017"
