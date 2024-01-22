@@ -5,8 +5,9 @@ services:
     build:
       context: ../myflix-client
     environment:
-      - REACT_APP_USER_API=http://localhost:5000
-      - REACT_APP_VIDEO_API=http://localhost:5001
+      - REACT_APP_USER_API=http://myflix-userauth:5000
+      - REACT_APP_VIDEO_API=http://myflix-videocatalog:5001
+      - REACT_APP_RECOMMENDATION_API=http://myflix-recommendation:5002  # New environment variable
     ports:
       - "3000:3000"
 
@@ -14,11 +15,11 @@ services:
     build:
       context: ../myflix-userauth
     environment:
-      - MONGO_URI=mongodb://myflix-mongo:27017/userauth  # Use service name
+      - MONGO_URI=mongodb://myflix-mongo:27017/userauth
     depends_on:
-      - myflix-mongo  # Ensure MongoDB is started first
+      - myflix-mongo
     ports:
-      - 5000:5000
+      - "5000:5000"
 
   myflix-mongo:
     image: mongo
@@ -32,3 +33,14 @@ services:
       - MONGO_URI=mongodb://myflix-mongo:27017/videocatalog
     ports:
       - "5001:5001"
+
+  myflix-recommendation:
+    build:
+      context: ../myflix-rec-engine
+    environment:
+      - MONGO_HOST=myflix-mongo
+      - MONGO_PORT=27017
+      - MONGO_DB=videocatalog
+      # Add other environment variables as needed
+    ports:
+      - "5002:5002"
