@@ -1,7 +1,8 @@
 import bcrypt
+import os
 from pymongo import MongoClient
 
-url = 'mongodb://localhost:7000'  # Update with your MongoDB connection URL
+url = os.environ.get('MONGODB_URL', 'mongodb://localhost:7000')  # Update with your MongoDB connection URL
 db_name = 'userauth'  # Update with your database name
 collection_name = 'users'
 

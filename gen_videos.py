@@ -1,4 +1,5 @@
 import pymongo
+import os
 import random
 from faker import Faker
 
@@ -6,12 +7,12 @@ from faker import Faker
 # pip install pymongo faker
 
 # Connect to the video catalog MongoDB instance
-video_client = pymongo.MongoClient("mongodb://localhost:7000/")
+video_client = pymongo.MongoClient(os.environ.get('MONGODB_URL', 'mongodb://localhost:7000'))
 video_database = video_client["videocatalog"]
 video_collection = video_database["videos"]
 
 # Connect to the user MongoDB instance (replace with your actual connection details)
-user_client = pymongo.MongoClient("mongodb://localhost:7000/")
+user_client = pymongo.MongoClient(os.environ.get('MONGODB_URL', 'mongodb://localhost:7000'))
 user_database = user_client["userauth"]
 user_collection = user_database["users"]
 
