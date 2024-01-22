@@ -1,8 +1,11 @@
 import bcrypt
 import os
+import socket
 from pymongo import MongoClient
 
-url = os.environ.get('MONGODB_URL', 'mongodb://localhost:7000')  # Update with your MongoDB connection URL
+# Get the hostname using socket.gethostname()
+hostname = socket.gethostname()
+url = f'mongodb://{hostname}:7000'
 db_name = 'userauth'  # Update with your database name
 collection_name = 'users'
 

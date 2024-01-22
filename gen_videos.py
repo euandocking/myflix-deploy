@@ -1,18 +1,21 @@
 import pymongo
 import os
 import random
+import socket
 from faker import Faker
 
 # Install the required libraries using:
 # pip install pymongo faker
 
+hostname = socket.gethostname()
+
 # Connect to the video catalog MongoDB instance
-video_client = pymongo.MongoClient(os.environ.get('MONGODB_URL', 'mongodb://localhost:7000'))
+video_client = pymongo.MongoClient(f'mongodb://{hostname}:7000')
 video_database = video_client["videocatalog"]
 video_collection = video_database["videos"]
 
 # Connect to the user MongoDB instance (replace with your actual connection details)
-user_client = pymongo.MongoClient(os.environ.get('MONGODB_URL', 'mongodb://localhost:7000'))
+user_client = pymongo.MongoClient(f'mongodb://{hostname}:7000')
 user_database = user_client["userauth"]
 user_collection = user_database["users"]
 
