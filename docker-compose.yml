@@ -5,9 +5,9 @@ services:
     build:
       context: ../myflix-client
     environment:
-      - REACT_APP_USER_API=http://myflix-userauth:5000
-      - REACT_APP_VIDEO_API=http://myflix-videocatalog:5001
-      - REACT_APP_RECOMMENDATION_API=http://myflix-recommendation:5002  # New environment variable
+      - REACT_APP_USER_API=http://localhost:5000
+      - REACT_APP_VIDEO_API=http://localhost:5001
+      - REACT_APP_RECOMMENDATION_API=http://localhost:5002
     ports:
       - "3000:3000"
 
