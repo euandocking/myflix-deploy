@@ -2,7 +2,7 @@ import bcrypt
 import socket
 from pymongo import MongoClient
 
-url = 'mongodb://myflix-mongo:27017/'  # Update with your MongoDB connection URL
+url = 'mongodb://localhost:7000/'  # Update with your MongoDB connection URL
 db_name = 'userauth'  # Update with your database name
 collection_name = 'users'
 
