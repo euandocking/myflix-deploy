@@ -1,11 +1,8 @@
 import bcrypt
-import os
 import socket
 from pymongo import MongoClient
 
-# Get the hostname using socket.gethostname()
-hostname = socket.gethostname()
-url = f'mongodb://{hostname}:7000'
+url = 'mongodb://myflix-mongo:27017/'  # Update with your MongoDB connection URL
 db_name = 'userauth'  # Update with your database name
 collection_name = 'users'
 

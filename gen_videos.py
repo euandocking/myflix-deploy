@@ -10,12 +10,12 @@ from faker import Faker
 hostname = socket.gethostname()
 
 # Connect to the video catalog MongoDB instance
-video_client = pymongo.MongoClient(f'mongodb://{hostname}:7000')
+video_client = pymongo.MongoClient('mongodb://myflix-mongo:27017/')
 video_database = video_client["videocatalog"]
 video_collection = video_database["videos"]
 
 # Connect to the user MongoDB instance (replace with your actual connection details)
-user_client = pymongo.MongoClient(f'mongodb://{hostname}:7000')
+user_client = pymongo.MongoClient('mongodb://myflix-mongo:27017/')
 user_database = user_client["userauth"]
 user_collection = user_database["users"]
 
