@@ -3,10 +3,8 @@ version: '3'
 services:
   myflix-client:
     image: euandocking/myflix-client:latest
-    environment:
-      - REACT_APP_USER_API=${HOST_URL}:5000
-      - REACT_APP_VIDEO_API=${HOST_URL}:5001
-      - REACT_APP_RECOMMENDATION_API=${HOST_URL}:5002
+    env_file:
+      - .clientEnv
     ports:
       - "3000:3000"
 
