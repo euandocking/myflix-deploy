@@ -4,9 +4,9 @@ services:
   myflix-client:
     image: euandocking/myflix-client:latest
     environment:
-      - REACT_APP_USER_API=http://localhost:5000
-      - REACT_APP_VIDEO_API=http://localhost:5001
-      - REACT_APP_RECOMMENDATION_API=http://localhost:5002
+      - REACT_APP_USER_API=${HOST_URL}:5000
+      - REACT_APP_VIDEO_API=${HOST_URL}:5001
+      - REACT_APP_RECOMMENDATION_API=${HOST_URL}:5002
     ports:
       - "3000:3000"
 
