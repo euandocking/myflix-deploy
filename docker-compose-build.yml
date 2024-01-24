@@ -2,16 +2,18 @@ version: '3'
 
 services:
   myflix-client:
-    image: ${DOCKERHUB_USERNAME}/myflix-client:latest
-    environment:
-      - REACT_APP_USER_API=http://localhost:5000
-      - REACT_APP_VIDEO_API=http://localhost:5001
-      - REACT_APP_RECOMMENDATION_API=http://localhost:5002
+    build:
+      context: ../myflix-client
+      dockerfile: Dockerfile
+    env_file:
+      - .clientEnv
     ports:
       - "3000:3000"
 
   myflix-userauth:
-    image: ${DOCKERHUB_USERNAME}/myflix-userauth:latest
+    build:
+      context: ../myflix-userauth
+      dockerfile: Dockerfile
     environment:
       - MONGO_URI=mongodb://myflix-mongo:27017/userauth
     depends_on:
@@ -25,18 +27,21 @@ services:
       - "7000:27017"
 
   myflix-videocatalog:
-    image: ${DOCKERHUB_USERNAME}/myflix-videocatalog:latest
+    build:
+      context: ../myflix-videocatalog
+      dockerfile: Dockerfile
     environment:
       - MONGO_URI=mongodb://myflix-mongo:27017/videocatalog
     ports:
       - "5001:5001"
 
   myflix-recommendation:
-    image: ${DOCKERHUB_USERNAME}/myflix-rec-engine:latest
+    build:
+      context: ../myflix-rec-engine
+      dockerfile: Dockerfile
     environment:
       - MONGO_HOST=myflix-mongo
       - MONGO_PORT=27017
       - MONGO_DB=videocatalog
-      # Add other environment variables as needed
     ports:
       - "5002:5002"

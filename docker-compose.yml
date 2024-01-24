@@ -35,6 +35,5 @@ services:
       - MONGO_HOST=myflix-mongo
       - MONGO_PORT=27017
       - MONGO_DB=videocatalog
-      # Add other environment variables as needed
     ports:
       - "5002:5002"
