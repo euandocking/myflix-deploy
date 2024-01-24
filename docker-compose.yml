@@ -6,7 +6,7 @@ services:
     env_file:
       - .clientEnv
     ports:
-      - "3000:3000"
+      - "80:3000"
 
   myflix-userauth:
     image: euandocking/myflix-userauth:latest
